@@ -21,17 +21,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Recipe App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange.shade800),
-        scaffoldBackgroundColor: Colors.white60,
-        useMaterial3: true,
-        textTheme: GoogleFonts.openSansTextTheme().copyWith(
-          titleLarge: GoogleFonts.openSans(fontSize: 30,fontWeight: FontWeight.bold)
-        )
-      ),
-      home: RootApp()
-    );
+        title: 'Recipe App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: Colors.deepOrange.shade800),
+            scaffoldBackgroundColor: Colors.white60,
+            useMaterial3: true,
+            textTheme: GoogleFonts.openSansTextTheme().copyWith(
+                titleLarge: GoogleFonts.openSans(
+                    fontSize: 30, fontWeight: FontWeight.bold),
+                titleMedium:
+                    GoogleFonts.openSans(fontWeight: FontWeight.bold))),
+        home: RootApp());
   }
 }
