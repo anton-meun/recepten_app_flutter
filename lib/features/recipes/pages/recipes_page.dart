@@ -23,13 +23,15 @@ class RecipesPage extends StatelessWidget {
         children: [
           // Search bar
           RecipesSearchBar(),
-
           SizedBox(height: 20),
+
           // Catagories
           Text("Catagories",
           style: theme.textTheme.titleMedium),
           SizedBox(height: 5),
           RecipesCatagories()
+
+
         ],
       ),
     );

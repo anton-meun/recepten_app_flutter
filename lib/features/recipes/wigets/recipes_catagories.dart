@@ -5,6 +5,20 @@ class RecipesCatagories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Recipes categories");
+    return SizedBox(
+      height: 100,
+
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Text("Category $index");
+        },
+        separatorBuilder: (context, index) =>
+            SizedBox(
+              width: 12,
+            ),
+        itemCount: 8,
+      ),
+    );
   }
 }
