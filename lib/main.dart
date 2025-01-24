@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:recepten_app_flutter/root_app.dart';
 
 void main() {
@@ -23,8 +24,12 @@ class MyApp extends StatelessWidget {
       title: 'Recipe App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange.shade800),
+        scaffoldBackgroundColor: Colors.white60,
         useMaterial3: true,
+        textTheme: GoogleFonts.openSansTextTheme().copyWith(
+          titleLarge: GoogleFonts.openSans(fontSize: 30,fontWeight: FontWeight.bold)
+        )
       ),
       home: RootApp()
     );
