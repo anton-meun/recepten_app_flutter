@@ -16,7 +16,6 @@ class RecipeCategoryPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final recipes = ref.watch(recipesByCategoryProvider(recipeCategory.name));
 
-
     return Scaffold(
       appBar: AppBar(
         title: Text(recipeCategory.name),
@@ -27,7 +26,7 @@ class RecipeCategoryPage extends ConsumerWidget {
               tag: recipeCategory.id,
               child: CircleAvatar(
                 foregroundImage:
-                CachedNetworkImageProvider(recipeCategory.imageUrl),
+                    CachedNetworkImageProvider(recipeCategory.imageUrl),
               ),
             ),
           ),
@@ -46,13 +45,13 @@ class RecipeCategoryPage extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final recipe = data[index];
                 return RecipeCard(
-                    name: recipe.name,
-                    imageUrl: recipe.imageUrl,
-                    onTap: () {},
-                );
-                  },
+                  name: recipe.name,
+                  imageUrl: recipe.imageUrl,
+                  onTap: () {},
                 );
               },
+            );
+          },
           error: (error, stackTrace) => Center(child: Text(error.toString())),
           loading: () => Center(child: Spinner())),
     );

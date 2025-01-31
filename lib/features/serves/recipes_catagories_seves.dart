@@ -7,14 +7,14 @@ import '../../api/network.dart';
 part 'recipes_catagories_seves.g.dart';
 
 @riverpod
-
-Future<List<RecipeCategory>> recipeCategories (Ref ref) async {
-
+Future<List<RecipeCategory>> recipeCategories(Ref ref) async {
   final response = await dio.get('/categories.php');
-  if(response.statusCode != 200) {
+  if (response.statusCode != 200) {
     throw Exception(response.statusMessage);
   }
   final data = response.data['categories'];
 
-  return List.from(data).map((category) => RecipeCategory.fromJson(category)).toList();
+  return List.from(data)
+      .map((category) => RecipeCategory.fromJson(category))
+      .toList();
 }

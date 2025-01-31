@@ -7,7 +7,7 @@ import '../../api/network.dart';
 part 'recipes_by_category_serves.g.dart';
 
 @riverpod
-Future<List<BasicRecipe>> recipesByCategory (Ref ref, String category) async {
+Future<List<BasicRecipe>> recipesByCategory(Ref ref, String category) async {
   final response = await dio.get('/filter.php?c=$category');
   if (response.statusCode != 200) {
     throw Exception(response.statusMessage);
