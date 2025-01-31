@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recepten_app_flutter/features/serves/recipes_catagories_seves.dart';
 import 'package:recepten_app_flutter/widgets/spinner.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:recepten_app_flutter/features/recipes/pages/recipe_category_page.dart';
 
 class RecipesCatagories extends ConsumerWidget {
   const RecipesCatagories({super.key});
@@ -19,26 +20,41 @@ class RecipesCatagories extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final category = data[index];
-              return Column(
-                children: [
-                  // Image
-                  Expanded(
-                    child: SizedBox(
-                      width: 80,
-                      child: CircleAvatar(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: CachedNetworkImage(
-                            imageUrl: category.imageUrl,
-                            progressIndicatorBuilder: (context, url, progress) => Center(child: Spinner()),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            RecipeCategoryPage(recipeCategory: category),
+                      ));
+                },
+                child: Column(
+                  children: [
+                    // Image
+                    Expanded(
+                      child: SizedBox(
+                        width: 80,
+                        child: CircleAvatar(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Hero(
+                              tag: category.id,
+                              child: CachedNetworkImage(
+                                imageUrl: category.imageUrl,
+                                progressIndicatorBuilder:
+                                    (context, url, progress) =>
+                                        Center(child: Spinner()),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  // Text
-                  Text(category.name),
-                ],
+                    // Text
+                    Text(category.name),
+                  ],
+                ),
               );
             },
             separatorBuilder: (context, index) => SizedBox(
