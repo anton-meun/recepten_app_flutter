@@ -46,7 +46,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Login")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -54,12 +56,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: "Email"),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                label: Center(
+                child: Text("Email"),
+              ),),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(labelText: "Password"),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                label: Center(
+                  child: Text ("Password"),
+              ),
+            ),
               obscureText: true,
             ),
             if (_errorMessage != null) ...[

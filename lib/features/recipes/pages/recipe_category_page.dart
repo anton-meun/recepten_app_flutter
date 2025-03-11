@@ -18,6 +18,7 @@ class RecipeCategoryPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(recipeCategory.name),
         actions: [
           Padding(

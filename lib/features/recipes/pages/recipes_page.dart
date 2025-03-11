@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/recipes_catagories.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/recipes_search_bar.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/rendom_recipes.dart';
+import 'package:recepten_app_flutter/features/recipes/wigets/see_more_random_recipes.dart';
 
 class RecipesPage extends StatelessWidget {
   const RecipesPage({super.key});
@@ -39,7 +40,16 @@ class RecipesPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Random meals",style: theme.textTheme.titleMedium),
-              TextButton(onPressed: () {}, child: Text("See more"))
+              TextButton(onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) => SeeMoreRecipesPage(),
+                  ),
+                );
+              },
+                  child: Text("See more")),
+
             ],
           ),
           ),

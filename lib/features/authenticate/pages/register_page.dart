@@ -52,7 +52,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Register")),
+      appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Register")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -60,20 +62,40 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           children: [
             TextField(
               controller: _firstNameController,
-              decoration: const InputDecoration(labelText: "First name"),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                label: Center(
+                  child: Text("First name"),
+                ),
+              ),
             ),
             TextField(
               controller: _lastNameController,
-              decoration: const InputDecoration(labelText: "Last name"),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                label: Center(
+                  child: Text("Last name"),
+                ),
+              ),
             ),
             TextField(
               controller: _emailController,
-              decoration: const InputDecoration(labelText: "Email"),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                label: Center(
+                  child: Text("Email"),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(labelText: "Password"),
+              textAlign: TextAlign.center,
+              decoration: const InputDecoration(
+                label: Center(
+                  child: Text("Password"),
+                ),
+              ),
               obscureText: true,
             ),
             if (_errorMessage != null) ...[
