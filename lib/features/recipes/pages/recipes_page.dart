@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/recipes_catagories.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/recipes_search_bar.dart';
+import 'package:recepten_app_flutter/features/recipes/wigets/rendom_recipes.dart';
 
 class RecipesPage extends StatelessWidget {
   const RecipesPage({super.key});
@@ -29,9 +30,20 @@ class RecipesPage extends StatelessWidget {
           Text("Catagories",
           style: theme.textTheme.titleMedium),
           SizedBox(height: 5),
-          RecipesCatagories()
+          RecipesCatagories(),
 
-
+          // Random Meals
+          Padding(
+              padding: const EdgeInsets.only(top: 15, bottom: 5),
+          child:Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Random meals",style: theme.textTheme.titleMedium),
+              TextButton(onPressed: () {}, child: Text("See more"))
+            ],
+          ),
+          ),
+          Rendomrecipes()
         ],
       ),
     );
