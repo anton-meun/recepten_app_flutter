@@ -1,42 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recepten_app_flutter/features/favorites/pages/favorites_page.dart';
 import 'package:recepten_app_flutter/features/recipes/pages/recipes_page.dart';
+import 'package:recepten_app_flutter/features/authenticate/pages/login_page.dart';
+import 'package:recepten_app_flutter/features/serves/auth_service.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class RootApp extends StatefulWidget {
+class RootApp extends ConsumerStatefulWidget {
   const RootApp({super.key});
 
   @override
-  State<RootApp> createState() => _RootAppState();
+  ConsumerState<RootApp> createState() => _RootAppState();
 }
 
-class _RootAppState extends State<RootApp> {
+class _RootAppState extends ConsumerState<RootApp> {
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
   int currentIndex = 0;
 
-  final pages = [RecipesPage(), FavoritesPage()];
+  @override
+  void initState() {
+    super.initState();
+    _checkToken();
+  }
+
+  Future<void> _checkToken() async {
+    final token = await _storage.read(key: "auth_token");
+    ref.read(authProvider.notifier).state = token; // set token
+  }
 
   @override
   Widget build(BuildContext context) {
+    final token = ref.watch(authProvider); // Check if token is present
+
+    if (token == null) {
+      return const LoginPage(); // Redirect to login if no token is present
+    }
+
     return Scaffold(
-      body: pages[currentIndex],
+      body: IndexedStack(
+        index: currentIndex,
+        children: const [RecipesPage(), FavoritesPage()],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
-          onDestinationSelected: (index){
+        onDestinationSelected: (index) {
           setState(() {
             currentIndex = index;
           });
-          },
-          destinations: [
-        NavigationDestination(
-            icon: Icon (Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: "Recipes"
-        ),
-        NavigationDestination(
-            icon: Icon(Icons.favorite_border_outlined),
-            selectedIcon: Icon(Icons.favorite),
-            label: "Favorites",
-        ),
-      ]),
+        },
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: "Recipes"),
+          NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites"),
+        ],
+      ),
     );
   }
 }
