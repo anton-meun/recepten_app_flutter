@@ -7,6 +7,10 @@ import 'package:recepten_app_flutter/features/serves/recipes_by_category_serves.
 import 'package:recepten_app_flutter/widgets/recipe_card.dart';
 import 'package:recepten_app_flutter/widgets/spinner.dart';
 
+import '../../../api/network.dart';
+import '../../../entities/complete_recipe.dart';
+import 'recipe_details_page.dart';
+
 class RecipeCategoryPage extends ConsumerWidget {
   const RecipeCategoryPage({super.key, required this.recipeCategory});
 
@@ -48,7 +52,18 @@ class RecipeCategoryPage extends ConsumerWidget {
                 return RecipeCard(
                   name: recipe.name,
                   imageUrl: recipe.imageUrl,
-                  onTap: () {},
+                  onTap: () async {
+                    final response = await dio.get("https://themealdb.com/api/json/v1/1/lookup.php?i=${recipe.id}");
+                    if (response.statusCode == 200) {
+                      final completeRecipe = CompleteRecipe.fromMap(response.data['meals'][0]);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => RecipeDetailsPage(recipe: completeRecipe),
+                        ),
+                      );
+                    }
+                  },
+
                 );
               },
             );

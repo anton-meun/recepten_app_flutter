@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         chipTheme: ChipThemeData(
           shape: ContinuousRectangleBorder( borderRadius: BorderRadius.circular(25))
-        )
+        ),
       ),
       initialRoute: '/login',  // Start page
       routes: {

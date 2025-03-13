@@ -113,38 +113,43 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                   child: Row(
                     spacing: 4,
                     children: [
-                      const Icon(Icons.local_drink_outlined, size: 20),
+                      const Icon(Icons.list_alt_rounded, size: 20),
                       Text(
                         "Ingredients",
-                        style: theme.textTheme.titleLarge,
+                        style: theme.textTheme.titleMedium,
                       ),
                     ],
                   ),
                 ),
 
                 Wrap(
+                  runSpacing: 10,
                   children: List.generate(
                     widget.recipe.ingredients.length,
                         (index) {
                       final ingredient = widget.recipe.ingredients[index];
-                      return ListTile(
-                        leading: CircleAvatar(
-                          radius: 24,
-                          child: Padding(
-                            padding: const EdgeInsets.all(5),
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(color: Colors.deepOrange.shade800, width: 0.5), // Rand
+                        ),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: 28,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(25),
                               child: Image.network(
                                 ingredient.imageUrl,
                                 fit: BoxFit.cover,
-                                width: 40,
-                                height: 40,
+                                width: 45,
+                                height: 45,
                               ),
                             ),
                           ),
+                          title: Text(ingredient.name),
+                          subtitle: Text(ingredient.measure),
                         ),
-                        title: Text(ingredient.name),
-                        subtitle: Text(ingredient.measure),
                       );
                     },
                   ),
