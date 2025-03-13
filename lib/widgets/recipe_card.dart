@@ -15,7 +15,9 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
       children: [
         Expanded(
           child: SizedBox(
@@ -41,6 +43,7 @@ class RecipeCard extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
+    ),
     );
   }
 }

@@ -48,7 +48,8 @@ class RecipesPage extends StatelessWidget {
                   ),
                 );
               },
-                  child: Text("See more")),
+                  child: Text("See more", style: TextStyle(color: Colors.deepOrange)),
+              ),
 
             ],
           ),

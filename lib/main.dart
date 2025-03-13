@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
           titleLarge: GoogleFonts.openSans(fontSize: 30, fontWeight: FontWeight.bold),
           titleMedium: GoogleFonts.openSans(fontWeight: FontWeight.bold),
         ),
+        chipTheme: ChipThemeData(
+          shape: ContinuousRectangleBorder( borderRadius: BorderRadius.circular(25))
+        )
       ),
       initialRoute: '/login',  // Start page
       routes: {
