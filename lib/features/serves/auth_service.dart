@@ -55,7 +55,7 @@ class AuthProvider extends StateNotifier<String?> {
   // check tokon
   Future<void> checkToken() async {
     final token = await _storage.read(key: "auth_token");
-    state = token; // ✅ Zet token in provider
+    state = token;
   }
 
   // log off

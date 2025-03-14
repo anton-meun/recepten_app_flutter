@@ -6,6 +6,7 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:recepten_app_flutter/entities/complete_recipe.dart';
 
 import '../../../widgets/logout.dart';
+import '../../serves/favorites_serves.dart';
 
 class RecipeDetailsPage extends ConsumerStatefulWidget {
   const RecipeDetailsPage({super.key, required this.recipe});
@@ -21,6 +22,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
   final int maxInstructionChars = 400;
   late TapGestureRecognizer _tapRecognizer;
   bool _isExpanded = false;
+  TextEditingController _commentController = TextEditingController();
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
   @override
   void dispose() {
     _tapRecognizer.dispose();
+    _commentController.dispose();
     super.dispose();
   }
 
@@ -38,6 +41,41 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
     setState(() {
       _isExpanded = !_isExpanded;
     });
+  }
+
+  // Function for the comment
+  void _showCommentDialog(CompleteRecipe recipe) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Voeg een commentaar toe'),
+          content: TextField(
+            controller: _commentController,
+            decoration: const InputDecoration(
+              labelText: 'Commentaar (optioneel)',
+            ),
+            maxLines: 3,
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Annuleren'),
+            ),
+            TextButton(
+              onPressed: () {
+                final comment = _commentController.text;
+                ref.read(favoritesNotifierProvider.notifier).addFavorite(recipe, comment: comment);
+                Navigator.of(context).pop();
+              },
+              child: const Text('Toevoegen'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -55,9 +93,11 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
             icon: const Icon(Icons.logout),
           ),
           IconButton(
-            onPressed: () {},
-            icon: Icon(IconsaxPlusBold.heart),
-          )
+            onPressed: () {
+              _showCommentDialog(widget.recipe);
+            },
+            icon: Icon(Icons.favorite),
+          ),
         ],
       ),
       body: ListView(
@@ -127,7 +167,6 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                     ],
                   ),
                 ),
-
                 Wrap(
                   runSpacing: 10,
                   children: List.generate(
@@ -160,6 +199,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                     },
                   ),
                 ),
+
               ],
             ),
           ),
