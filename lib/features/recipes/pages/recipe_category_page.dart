@@ -9,6 +9,7 @@ import 'package:recepten_app_flutter/widgets/spinner.dart';
 
 import '../../../api/network.dart';
 import '../../../entities/complete_recipe.dart';
+import '../../../widgets/logout.dart';
 import 'recipe_details_page.dart';
 
 class RecipeCategoryPage extends ConsumerWidget {
@@ -25,6 +26,10 @@ class RecipeCategoryPage extends ConsumerWidget {
         centerTitle: true,
         title: Text(recipeCategory.name),
         actions: [
+          IconButton(
+            onPressed: () => logout(context, ref), // Uitlogfunctie aangeroepen
+            icon: const Icon(Icons.logout),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 14.0),
             child: Hero(

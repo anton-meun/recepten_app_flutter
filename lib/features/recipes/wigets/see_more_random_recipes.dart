@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../widgets/logout.dart';
 import '../../../widgets/recipe_card.dart';
 import '../../../widgets/spinner.dart';
 import '../../serves/random_recipe_serves.dart';
@@ -12,10 +13,17 @@ class SeeMoreRecipesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final recipes = ref.watch(randomRecipesProvider(30));
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Rendom recipes"),
+        title: const Text("Random recipes"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => logout(context, ref),
+          ),
+        ],
       ),
       body: recipes.when(
         data: (data) {

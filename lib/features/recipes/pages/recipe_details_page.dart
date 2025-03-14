@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:recepten_app_flutter/entities/complete_recipe.dart';
 
+import '../../../widgets/logout.dart';
+
 class RecipeDetailsPage extends ConsumerStatefulWidget {
   const RecipeDetailsPage({super.key, required this.recipe});
 
@@ -18,7 +20,7 @@ class RecipeDetailsPage extends ConsumerStatefulWidget {
 class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
   final int maxInstructionChars = 400;
   late TapGestureRecognizer _tapRecognizer;
-  bool _isExpanded = false; // ✅ Houdt bij of de instructie is uitgevouwen
+  bool _isExpanded = false;
 
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
 
   void _toggleReadMore() {
     setState(() {
-      _isExpanded = !_isExpanded; // ✅ Toggle tussen Read More en Read Less
+      _isExpanded = !_isExpanded;
     });
   }
 
@@ -48,6 +50,10 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
       appBar: AppBar(
         title: Text(widget.recipe.name),
         actions: [
+          IconButton(
+            onPressed: () => logout(context, ref),
+            icon: const Icon(Icons.logout),
+          ),
           IconButton(
             onPressed: () {},
             icon: Icon(IconsaxPlusBold.heart),

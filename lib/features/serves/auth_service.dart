@@ -30,7 +30,7 @@ class AuthProvider extends StateNotifier<String?> {
     }
   }
 
-  // ✅ Inloggen
+  // login
   Future<bool> login(String email, String password) async {
     try {
       final response = await _dio.post('/auth/login', data: {
