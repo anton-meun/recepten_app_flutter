@@ -49,11 +49,11 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Voeg een commentaar toe'),
+          title: const Text('Add a Note'),
           content: TextField(
             controller: _commentController,
             decoration: const InputDecoration(
-              labelText: 'Commentaar (optioneel)',
+              labelText: 'Note (optional)',
             ),
             maxLines: 3,
           ),
@@ -62,7 +62,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Annuleren'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -70,7 +70,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                 ref.read(favoritesNotifierProvider.notifier).addFavorite(recipe, comment: comment);
                 Navigator.of(context).pop();
               },
-              child: const Text('Toevoegen'),
+              child: const Text('Add'),
             ),
           ],
         );

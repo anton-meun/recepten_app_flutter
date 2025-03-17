@@ -5,6 +5,7 @@ import 'package:recepten_app_flutter/features/recipes/pages/recipes_page.dart';
 import 'package:recepten_app_flutter/features/authenticate/pages/login_page.dart';
 import 'package:recepten_app_flutter/features/serves/auth_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'features/serves/get_favorites_serves.dart';
 
 class RootApp extends ConsumerStatefulWidget {
   const RootApp({super.key});
@@ -47,6 +48,11 @@ class _RootAppState extends ConsumerState<RootApp> {
           setState(() {
             currentIndex = index;
           });
+
+          // get favorites if favorites is selected
+          if (index == 1) {
+            ref.read(favoritesFetcherProvider.notifier).getFavorites();
+          }
         },
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: "Recipes"),
@@ -56,3 +62,4 @@ class _RootAppState extends ConsumerState<RootApp> {
     );
   }
 }
+

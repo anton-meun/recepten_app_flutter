@@ -24,10 +24,9 @@ class FavoritesNotifier extends _$FavoritesNotifier {
 
       final response = await _dio.post(
         "/user/favorites",
-        // Je API-endpoint voor het toevoegen van een favoriet
         data: {
           "mealId": recipe.id,
-          "comment": comment, // Het commentaar wordt hier meegegeven
+          "comment": comment,
         },
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );

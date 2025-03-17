@@ -27,7 +27,7 @@ class RecipeCategoryPage extends ConsumerWidget {
         title: Text(recipeCategory.name),
         actions: [
           IconButton(
-            onPressed: () => logout(context, ref), // Uitlogfunctie aangeroepen
+            onPressed: () => logout(context, ref),
             icon: const Icon(Icons.logout),
           ),
           Padding(
