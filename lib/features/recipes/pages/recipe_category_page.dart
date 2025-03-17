@@ -6,7 +6,6 @@ import 'package:recepten_app_flutter/entities/recipe_category.dart';
 import 'package:recepten_app_flutter/features/serves/recipes_by_category_serves.dart';
 import 'package:recepten_app_flutter/widgets/recipe_card.dart';
 import 'package:recepten_app_flutter/widgets/spinner.dart';
-
 import '../../../api/network.dart';
 import '../../../entities/complete_recipe.dart';
 import '../../../widgets/logout.dart';
@@ -36,7 +35,7 @@ class RecipeCategoryPage extends ConsumerWidget {
               tag: recipeCategory.id,
               child: CircleAvatar(
                 foregroundImage:
-                    CachedNetworkImageProvider(recipeCategory.imageUrl),
+                CachedNetworkImageProvider(recipeCategory.imageUrl),
               ),
             ),
           ),
