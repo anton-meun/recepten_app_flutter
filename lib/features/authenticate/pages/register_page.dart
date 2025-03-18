@@ -14,8 +14,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   bool _isLoading = false;
+  bool _isConfirmPasswordVisible = false;
   String? _errorMessage;
 
   // Form key for validation
@@ -35,11 +37,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     try {
       await ref.read(authProvider.notifier).register(
-            _firstNameController.text,
-            _lastNameController.text,
-            _emailController.text,
-            _passwordController.text,
-          );
+        _firstNameController.text,
+        _lastNameController.text,
+        _emailController.text,
+        _passwordController.text,
+      );
 
       if (!mounted) return;
 
@@ -58,100 +60,135 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
         centerTitle: true,
         title: const Text("Register"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey, // Set the form key for validation
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // First Name TextFormField with validation
-              TextFormField(
-                controller: _firstNameController,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  label: Center(
-                    child: Text("First name"),
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your first name';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _lastNameController,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  label: Center(
-                    child: Text("Last name"),
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your last name';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _emailController,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  label: Center(
-                    child: Text("Email"),
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  // Simple email format check
-                  if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      .hasMatch(value)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: _passwordController,
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  label: Center(
-                    child: Text("Password"),
-                  ),
-                ),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  if (value.length < 10) {
-                    return 'Password must be at least 10 characters';
-                  }
-                  return null;
-                },
-              ),
-              if (_errorMessage != null) ...[
-                const SizedBox(height: 10),
-                Text(_errorMessage!, style: TextStyle(color: Colors.red)),
-              ],
-              const SizedBox(height: 20),
-              _isLoading
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: _register,
-                      child: const Text("Register"),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey, // Set the form key for validation
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // First Name TextFormField with validation
+                TextFormField(
+                  controller: _firstNameController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    label: Center(
+                      child: Text("First name"),
                     ),
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text("Back to login"),
-              ),
-            ],
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _lastNameController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    label: Center(
+                      child: Text("Last name"),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _emailController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    label: Center(
+                      child: Text("Email"),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    // Simple email format
+                    if (!RegExp(
+                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                        .hasMatch(value)) {
+                      return 'Please enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _passwordController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    label: Center(
+                      child: Text("Password"),
+                    ),
+                  ),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    if (value.length < 10) {
+                      return 'Password must be at least 10 characters';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _confirmPasswordController,
+                  textAlign: TextAlign.center,
+                  obscureText: !_isConfirmPasswordVisible,
+                  decoration: InputDecoration(
+                    label: const Center(child: Text("Confirm Password")),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != _passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+                IconButton(
+                  icon: Icon(
+                    _isConfirmPasswordVisible ? Icons.visibility : Icons
+                        .visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isConfirmPasswordVisible =
+                      !_isConfirmPasswordVisible;
+                    });
+                  },
+                ),
+
+                if (_errorMessage != null) ...[
+                  const SizedBox(height: 10),
+                  Text(_errorMessage!, style: TextStyle(color: Colors.red)),
+                ],
+                const SizedBox(height: 20),
+                _isLoading
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                  onPressed: _register,
+                  child: const Text("Register"),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, '/login'),
+                  child: const Text("Back to login"),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -13,6 +13,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isLoading = false;
+  bool _isPasswordVisible = false;
   String? _errorMessage;
 
   Future<void> _login() async {
@@ -66,12 +67,23 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             TextField(
               controller: _passwordController,
               textAlign: TextAlign.center,
+              obscureText: !_isPasswordVisible,  // Dynamisch obscureText
               decoration: const InputDecoration(
-                label: Center(
-                  child: Text("Password"),
-                ),
+                label: Center(child: Text("Password")),
               ),
-              obscureText: true,
+            ),
+            const SizedBox(height: 5),
+
+            // Eye Icon below the Password Field
+            IconButton(
+              icon: Icon(
+                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+              ),
+              onPressed: () {
+                setState(() {
+                  _isPasswordVisible = !_isPasswordVisible;  // Toggle zichtbaarheid
+                });
+              },
             ),
             if (_errorMessage != null) ...[
               const SizedBox(height: 10),
