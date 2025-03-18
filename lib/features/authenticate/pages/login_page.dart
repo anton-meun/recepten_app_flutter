@@ -21,12 +21,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       _errorMessage = null;
     });
 
-    print(" Login attempt with: ${_emailController.text} / ${_passwordController.text}");
+    print(
+        " Login attempt with: ${_emailController.text} / ${_passwordController.text}");
 
     final success = await ref.read(authProvider.notifier).login(
-      _emailController.text.trim(),
-      _passwordController.text.trim(),
-    );
+          _emailController.text.trim(),
+          _passwordController.text.trim(),
+        );
 
     if (!mounted) return;
 
@@ -46,9 +47,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Login")),
+      appBar: AppBar(centerTitle: true, title: const Text("Login")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -59,8 +58,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
                 label: Center(
-                child: Text("Email"),
-              ),),
+                  child: Text("Email"),
+                ),
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
@@ -68,9 +68,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               textAlign: TextAlign.center,
               decoration: const InputDecoration(
                 label: Center(
-                  child: Text ("Password"),
+                  child: Text("Password"),
+                ),
               ),
-            ),
               obscureText: true,
             ),
             if (_errorMessage != null) ...[
@@ -81,11 +81,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             _isLoading
                 ? const CircularProgressIndicator()
                 : ElevatedButton(
-              onPressed: _login,
-              child: const Text("Login"),
-            ),
+                    onPressed: _login,
+                    child: const Text("Login"),
+                  ),
             TextButton(
-              onPressed: () => Navigator.pushNamed(context, '/register'),
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, '/register'),
               child: const Text("No account yet? Register here"),
             ),
           ],

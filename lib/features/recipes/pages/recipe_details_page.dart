@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:recepten_app_flutter/entities/complete_recipe.dart';
-
 import '../../../widgets/logout.dart';
 import '../../serves/favorites_serves.dart';
+import '../../serves/get_favorites_serves.dart';
 
 class RecipeDetailsPage extends ConsumerStatefulWidget {
   const RecipeDetailsPage({super.key, required this.recipe});
@@ -56,6 +56,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
               labelText: 'Note (optional)',
             ),
             maxLines: 3,
+            maxLength: 100,
           ),
           actions: <Widget>[
             TextButton(
@@ -67,7 +68,9 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
             TextButton(
               onPressed: () {
                 final comment = _commentController.text;
-                ref.read(favoritesNotifierProvider.notifier).addFavorite(recipe, comment: comment);
+                ref
+                    .read(favoritesNotifierProvider.notifier)
+                    .addFavorite(recipe, comment: comment);
                 Navigator.of(context).pop();
               },
               child: const Text('Add'),
@@ -81,8 +84,13 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bool readMore = !_isExpanded &&
-        widget.recipe.instructions.length > maxInstructionChars;
+    final favoritesState = ref.watch(favoritesFetcherProvider);
+    final bool readMore =
+        !_isExpanded && widget.recipe.instructions.length > maxInstructionChars;
+
+    bool isFavorite =
+        favoritesState.value?.any((fav) => fav.recipe.id == widget.recipe.id) ??
+            false;
 
     return Scaffold(
       appBar: AppBar(
@@ -94,9 +102,18 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
           ),
           IconButton(
             onPressed: () {
-              _showCommentDialog(widget.recipe);
+              if (isFavorite) {
+                ref
+                    .read(favoritesNotifierProvider.notifier)
+                    .removeFavorite(widget.recipe.id);
+              } else {
+                _showCommentDialog(widget.recipe);
+              }
             },
-            icon: Icon(Icons.favorite),
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: isFavorite ? Colors.red : null,
+            ),
           ),
         ],
       ),
@@ -115,7 +132,7 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                   spacing: 10,
                   children: List.generate(
                     widget.recipe.tags.length,
-                        (index) {
+                    (index) {
                       final tag = widget.recipe.tags[index];
                       return Chip(label: Text(tag));
                     },
@@ -171,13 +188,15 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                   runSpacing: 10,
                   children: List.generate(
                     widget.recipe.ingredients.length,
-                        (index) {
+                    (index) {
                       final ingredient = widget.recipe.ingredients[index];
                       return Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: Colors.deepOrange.shade800, width: 0.5), // Rand
+                          border: Border.all(
+                              color: Colors.deepOrange.shade800,
+                              width: 0.5), // Rand
                         ),
                         child: ListTile(
                           leading: CircleAvatar(
@@ -199,7 +218,6 @@ class _RecipeDetailsPageState extends ConsumerState<RecipeDetailsPage> {
                     },
                   ),
                 ),
-
               ],
             ),
           ),

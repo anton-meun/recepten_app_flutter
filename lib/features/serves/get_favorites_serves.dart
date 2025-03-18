@@ -60,9 +60,9 @@ class FavoritesFetcher extends _$FavoritesFetcher {
     }
   }
 
-  // Toevoegen van een resetfunctie die de state opnieuw haalt
+
   Future<void> resetFavorites() async {
-    state = const AsyncLoading();  // Zet de state terug naar loading
-    await getFavorites();  // Haal de favorieten opnieuw op
+    state = const AsyncLoading();
+    await getFavorites();
   }
 }

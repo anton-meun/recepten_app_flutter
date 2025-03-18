@@ -8,20 +8,20 @@ class RecipeCard extends StatelessWidget {
     required this.name,
     required this.imageUrl,
     required this.onTap,
-    this.comment, // Optionele parameter voor comment
+    this.comment,
   });
 
   final String name;
   final String imageUrl;
   final VoidCallback onTap;
-  final String? comment; // Comment is nu optioneel
+  final String? comment;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Zorgt voor een nette opmaak
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: SizedBox(
@@ -49,14 +49,14 @@ class RecipeCard extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          if (comment != null && comment!.isNotEmpty) // Toont comment als die aanwezig is
+          if (comment != null && comment!.isNotEmpty)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 comment!,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontStyle: FontStyle.italic, // Maak de comment een beetje anders
-                ),
+                      fontStyle: FontStyle.italic,
+                    ),
               ),
             ),
         ],

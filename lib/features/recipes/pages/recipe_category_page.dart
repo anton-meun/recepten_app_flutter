@@ -35,7 +35,7 @@ class RecipeCategoryPage extends ConsumerWidget {
               tag: recipeCategory.id,
               child: CircleAvatar(
                 foregroundImage:
-                CachedNetworkImageProvider(recipeCategory.imageUrl),
+                    CachedNetworkImageProvider(recipeCategory.imageUrl),
               ),
             ),
           ),
@@ -57,17 +57,19 @@ class RecipeCategoryPage extends ConsumerWidget {
                   name: recipe.name,
                   imageUrl: recipe.imageUrl,
                   onTap: () async {
-                    final response = await dio.get("https://themealdb.com/api/json/v1/1/lookup.php?i=${recipe.id}");
+                    final response = await dio.get(
+                        "https://themealdb.com/api/json/v1/1/lookup.php?i=${recipe.id}");
                     if (response.statusCode == 200) {
-                      final completeRecipe = CompleteRecipe.fromMap(response.data['meals'][0]);
+                      final completeRecipe =
+                          CompleteRecipe.fromMap(response.data['meals'][0]);
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => RecipeDetailsPage(recipe: completeRecipe),
+                          builder: (context) =>
+                              RecipeDetailsPage(recipe: completeRecipe),
                         ),
                       );
                     }
                   },
-
                 );
               },
             );

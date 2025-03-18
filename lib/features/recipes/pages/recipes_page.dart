@@ -4,7 +4,6 @@ import 'package:recepten_app_flutter/features/recipes/wigets/recipes_catagories.
 import 'package:recepten_app_flutter/features/recipes/wigets/recipes_search_bar.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/rendom_recipes.dart';
 import 'package:recepten_app_flutter/features/recipes/wigets/see_more_random_recipes.dart';
-
 import '../../../widgets/logout.dart';
 
 class RecipesPage extends ConsumerWidget {

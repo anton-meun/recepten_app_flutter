@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../root_app.dart';
 import '../../serves/auth_service.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
@@ -36,18 +35,15 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     try {
       await ref.read(authProvider.notifier).register(
-        _firstNameController.text,
-        _lastNameController.text,
-        _emailController.text,
-        _passwordController.text,
-      );
+            _firstNameController.text,
+            _lastNameController.text,
+            _emailController.text,
+            _passwordController.text,
+          );
 
       if (!mounted) return;
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const RootApp()),
-      );
+      Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       setState(() => _errorMessage = "Registration failed: ${e.toString()}");
     } finally {
@@ -65,7 +61,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,  // Set the form key for validation
+          key: _formKey, // Set the form key for validation
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -113,7 +109,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     return 'Please enter your email';
                   }
                   // Simple email format check
-                  if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+                  if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
                     return 'Please enter a valid email address';
                   }
                   return null;
@@ -147,9 +144,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               _isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
-                onPressed: _register,
-                child: const Text("Register"),
-              ),
+                      onPressed: _register,
+                      child: const Text("Register"),
+                    ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: const Text("Back to login"),

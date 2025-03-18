@@ -79,7 +79,8 @@ class _RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => RecipeDetailsPage(recipe: recipe),
+                          builder: (context) =>
+                              RecipeDetailsPage(recipe: recipe),
                         ),
                       );
                     },

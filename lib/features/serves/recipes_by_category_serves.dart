@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recepten_app_flutter/entities/basic_recipe.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../api/network.dart';
 
 part 'recipes_by_category_serves.g.dart';

@@ -4,7 +4,8 @@ import 'package:recepten_app_flutter/features/recipes/pages/recipe_details_page.
 import '../../../widgets/recipe_card.dart';
 import '../../../widgets/spinner.dart';
 import '../../serves/random_recipe_serves.dart';
-class Rendomrecipes extends ConsumerWidget{
+
+class Rendomrecipes extends ConsumerWidget {
   const Rendomrecipes({super.key});
 
   @override
@@ -27,7 +28,8 @@ class Rendomrecipes extends ConsumerWidget{
               name: recipe.name,
               imageUrl: recipe.imageUrl,
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RecipeDetailsPage(recipe: recipe),
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => RecipeDetailsPage(recipe: recipe),
                 ));
               },
             );

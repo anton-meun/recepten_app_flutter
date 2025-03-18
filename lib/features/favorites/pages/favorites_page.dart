@@ -39,6 +39,17 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
       ),
       body: favoritesState.when(
         data: (favorites) {
+          if (favorites.isEmpty) {
+            return Center(
+              child: Text(
+                'No favorites jet!',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontSize: 18),
+              ),
+            );
+          }
           return GridView.builder(
             padding: const EdgeInsets.all(10),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -56,10 +67,11 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
                 name: recipe.name,
                 imageUrl: recipe.imageUrl,
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => RecipeDetailsPage(recipe: recipe),
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => RecipeDetailsPage(recipe: recipe),
                   ));
                 },
-                comment: comment.isEmpty ? "No note" : comment, // Zet de comment in de RecipeCard
+                comment: comment.isEmpty ? "No note" : comment,
               );
             },
           );
