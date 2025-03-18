@@ -67,21 +67,19 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             TextField(
               controller: _passwordController,
               textAlign: TextAlign.center,
-              obscureText: !_isPasswordVisible,  // Dynamisch obscureText
+              obscureText: !_isPasswordVisible,
               decoration: const InputDecoration(
                 label: Center(child: Text("Password")),
               ),
             ),
             const SizedBox(height: 5),
-
-            // Eye Icon below the Password Field
             IconButton(
               icon: Icon(
                 _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
               ),
               onPressed: () {
                 setState(() {
-                  _isPasswordVisible = !_isPasswordVisible;  // Toggle zichtbaarheid
+                  _isPasswordVisible = !_isPasswordVisible;
                 });
               },
             ),

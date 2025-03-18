@@ -37,11 +37,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     try {
       await ref.read(authProvider.notifier).register(
-        _firstNameController.text,
-        _lastNameController.text,
-        _emailController.text,
-        _passwordController.text,
-      );
+            _firstNameController.text,
+            _lastNameController.text,
+            _emailController.text,
+            _passwordController.text,
+          );
 
       if (!mounted) return;
 
@@ -113,7 +113,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     }
                     // Simple email format
                     if (!RegExp(
-                        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                            r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
                         .hasMatch(value)) {
                       return 'Please enter a valid email address';
                     }
@@ -160,13 +160,13 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 ),
                 IconButton(
                   icon: Icon(
-                    _isConfirmPasswordVisible ? Icons.visibility : Icons
-                        .visibility_off,
+                    _isConfirmPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
                   ),
                   onPressed: () {
                     setState(() {
-                      _isConfirmPasswordVisible =
-                      !_isConfirmPasswordVisible;
+                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
                     });
                   },
                 ),
@@ -179,9 +179,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 _isLoading
                     ? const CircularProgressIndicator()
                     : ElevatedButton(
-                  onPressed: _register,
-                  child: const Text("Register"),
-                ),
+                        onPressed: _register,
+                        child: const Text("Register"),
+                      ),
                 TextButton(
                   onPressed: () =>
                       Navigator.pushReplacementNamed(context, '/login'),
