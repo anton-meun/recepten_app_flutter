@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../../api/network.dart';
+
 final authProvider = StateNotifierProvider<AuthProvider, String?>((ref) {
   return AuthProvider();
 });
@@ -9,7 +11,10 @@ final authProvider = StateNotifierProvider<AuthProvider, String?>((ref) {
 class AuthProvider extends StateNotifier<String?> {
   AuthProvider() : super(null);
 
-  final Dio _dio = Dio(BaseOptions(baseUrl: "http://10.0.2.2:5223/api"));
+  final Dio _dio = Dio(BaseOptions(
+    baseUrl: apiUrl,
+  ));
+
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   // Registration

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
 import 'package:recepten_app_flutter/entities/complete_recipe.dart';
+import '../../api/network.dart';
 import 'auth_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'get_favorites_serves.dart';
@@ -9,7 +10,10 @@ part 'favorites_serves.g.dart';
 
 @riverpod
 class FavoritesNotifier extends _$FavoritesNotifier {
-  final Dio _dio = Dio(BaseOptions(baseUrl: "http://10.0.2.2:5223/api"));
+
+  final Dio _dio = Dio(BaseOptions(
+    baseUrl: apiUrl,
+  ));
 
   @override
   Future<List<CompleteRecipe>> build() async {

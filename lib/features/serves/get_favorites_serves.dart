@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../api/network.dart';
 import 'auth_service.dart';
 import '../../entities/complete_recipe.dart';
 import '../../entities/favorite_recipe.dart';
@@ -8,7 +9,10 @@ part 'get_favorites_serves.g.dart';
 
 @riverpod
 class FavoritesFetcher extends _$FavoritesFetcher {
-  final Dio _dio = Dio(BaseOptions(baseUrl: "http://10.0.2.2:5223/api"));
+
+  final Dio _dio = Dio(BaseOptions(
+    baseUrl: apiUrl,
+  ));
 
   @override
   Future<List<FavoriteRecipe>> build() async {
