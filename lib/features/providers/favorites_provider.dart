@@ -26,7 +26,7 @@ class FavoritesNotifier extends _$FavoritesNotifier {
       if (token == null) throw Exception("Not authenticated");
 
       final response = await _dio.post(
-        "/user/favorites",
+        "/Favorite/Addfavorites",
         data: {"mealId": recipe.id, "comment": comment},
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );
@@ -49,7 +49,7 @@ class FavoritesNotifier extends _$FavoritesNotifier {
       if (token == null) throw Exception("Not authenticated");
 
       final response = await _dio.delete(
-        "/user/favorites/$mealId",
+        "/Favorite/Deletefavorites/$mealId",
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );
 

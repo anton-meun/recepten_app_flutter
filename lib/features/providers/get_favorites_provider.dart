@@ -26,7 +26,7 @@ class FavoritesFetcher extends _$FavoritesFetcher {
       if (token == null) throw Exception("Not authenticated");
 
       final response = await _dio.get(
-        "/user/favorites",
+        "/Favorite/Getfavorites",
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );
 
