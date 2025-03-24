@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../widgets/logout.dart';
 import '../../recipes/pages/recipe_details_page.dart';
-import '../../serves/get_favorites_serves.dart';
+import '../../providers/get_favorites_provider.dart';
 import '../../../widgets/recipe_card.dart';
 import '../../../widgets/spinner.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../serves/recipe_search_serves.dart';
+import '../../providers/recipe_search_provider.dart';
 import '../pages/recipe_details_page.dart';
 
 class RecipesSearchBar extends ConsumerStatefulWidget {

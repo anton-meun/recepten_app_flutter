@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recipes_by_category_serves.dart';
+part of 'recipes_by_category_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator

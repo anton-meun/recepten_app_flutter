@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recepten_app_flutter/features/recipes/pages/recipe_details_page.dart';
 import '../../../widgets/recipe_card.dart';
 import '../../../widgets/spinner.dart';
-import '../../serves/random_recipe_serves.dart';
+import '../../providers/random_recipe_provider.dart';
 
 class Rendomrecipes extends ConsumerWidget {
   const Rendomrecipes({super.key});

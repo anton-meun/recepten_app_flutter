@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recepten_app_flutter/entities/recipe_category.dart';
-import 'package:recepten_app_flutter/features/serves/recipes_by_category_serves.dart';
+import 'package:recepten_app_flutter/features/providers/recipes_by_category_provider.dart';
 import 'package:recepten_app_flutter/widgets/recipe_card.dart';
 import 'package:recepten_app_flutter/widgets/spinner.dart';
 import '../../../api/network.dart';

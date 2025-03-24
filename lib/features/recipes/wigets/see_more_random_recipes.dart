@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../widgets/logout.dart';
 import '../../../widgets/recipe_card.dart';
 import '../../../widgets/spinner.dart';
-import '../../serves/random_recipe_serves.dart';
+import '../../providers/random_recipe_provider.dart';
 import '../pages/recipe_details_page.dart';
 
 class SeeMoreRecipesPage extends ConsumerWidget {

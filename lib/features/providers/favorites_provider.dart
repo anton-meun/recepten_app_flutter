@@ -2,11 +2,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
 import 'package:recepten_app_flutter/entities/complete_recipe.dart';
 import '../../api/network.dart';
-import 'auth_service.dart';
+import 'auth_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'get_favorites_serves.dart';
+import 'get_favorites_provider.dart';
 
-part 'favorites_serves.g.dart';
+part 'favorites_provider.g.dart';
 
 @riverpod
 class FavoritesNotifier extends _$FavoritesNotifier {

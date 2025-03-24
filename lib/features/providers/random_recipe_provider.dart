@@ -3,7 +3,7 @@ import 'package:recepten_app_flutter/entities/complete_recipe.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../api/network.dart';
 
-part 'random_recipe_serves.g.dart';
+part 'random_recipe_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<List<CompleteRecipe>> randomRecipes(Ref ref, [int limit = 10]) async {

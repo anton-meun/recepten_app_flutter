@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:recepten_app_flutter/features/serves/auth_service.dart';
+import 'package:recepten_app_flutter/features/providers/auth_provider.dart';
 
 Future<void> logout(BuildContext context, WidgetRef ref) async {
   final FlutterSecureStorage _storage = const FlutterSecureStorage();

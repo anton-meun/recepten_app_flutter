@@ -3,7 +3,7 @@ import 'package:recepten_app_flutter/entities/recipe_category.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../api/network.dart';
 
-part 'recipes_catagories_seves.g.dart';
+part 'recipes_catagories_provider.g.dart';
 
 @riverpod
 Future<List<RecipeCategory>> recipeCategories(Ref ref) async {

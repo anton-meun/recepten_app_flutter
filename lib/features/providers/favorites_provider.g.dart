@@ -1,29 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recipes_catagories_seves.dart';
+part of 'favorites_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$recipeCategoriesHash() => r'3709f2a15f8b28d421b75d46b424efd786f65819';
+String _$favoritesNotifierHash() => r'8155f2e84c6abd69fffedc67a904198fc322e75f';
 
-/// See also [recipeCategories].
-@ProviderFor(recipeCategories)
-final recipeCategoriesProvider =
-    AutoDisposeFutureProvider<List<RecipeCategory>>.internal(
-  recipeCategories,
-  name: r'recipeCategoriesProvider',
+/// See also [FavoritesNotifier].
+@ProviderFor(FavoritesNotifier)
+final favoritesNotifierProvider = AutoDisposeAsyncNotifierProvider<
+    FavoritesNotifier, List<CompleteRecipe>>.internal(
+  FavoritesNotifier.new,
+  name: r'favoritesNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$recipeCategoriesHash,
+      : _$favoritesNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef RecipeCategoriesRef
-    = AutoDisposeFutureProviderRef<List<RecipeCategory>>;
+typedef _$FavoritesNotifier = AutoDisposeAsyncNotifier<List<CompleteRecipe>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

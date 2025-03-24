@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:recepten_app_flutter/features/serves/recipes_catagories_seves.dart';
+import 'package:recepten_app_flutter/features/providers/recipes_catagories_provider.dart';
 import 'package:recepten_app_flutter/widgets/spinner.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:recepten_app_flutter/features/recipes/pages/recipe_category_page.dart';

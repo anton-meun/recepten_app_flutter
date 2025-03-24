@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../api/network.dart';
-import 'auth_service.dart';
+import 'auth_provider.dart';
 import '../../entities/complete_recipe.dart';
 import '../../entities/favorite_recipe.dart';
 
-part 'get_favorites_serves.g.dart';
+part 'get_favorites_provider.g.dart';
 
 @riverpod
 class FavoritesFetcher extends _$FavoritesFetcher {

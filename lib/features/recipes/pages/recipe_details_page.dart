@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:recepten_app_flutter/entities/complete_recipe.dart';
 import '../../../widgets/logout.dart';
-import '../../serves/favorites_serves.dart';
-import '../../serves/get_favorites_serves.dart';
+import '../../providers/favorites_provider.dart';
+import '../../providers/get_favorites_provider.dart';
 
 class RecipeDetailsPage extends ConsumerStatefulWidget {
   const RecipeDetailsPage({super.key, required this.recipe});
