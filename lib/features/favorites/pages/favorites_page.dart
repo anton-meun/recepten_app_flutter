@@ -42,7 +42,7 @@ class _FavoritesPageState extends ConsumerState<FavoritesPage> {
           if (favorites.isEmpty) {
             return Center(
               child: Text(
-                'No favorites jet!',
+                'No favorites yet!',
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge

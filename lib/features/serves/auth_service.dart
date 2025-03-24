@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 import '../../api/network.dart';
 
 final authProvider = StateNotifierProvider<AuthProvider, String?>((ref) {

@@ -12,7 +12,7 @@ class User {
     );
   }
 
-  // Methode om een User-object om te zetten naar JSON
+  //set user to Json
   Map<String, dynamic> toJson() {
     return {
       'id': id,
