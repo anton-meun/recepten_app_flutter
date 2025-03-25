@@ -9,12 +9,14 @@ class RecipeCard extends StatelessWidget {
     required this.imageUrl,
     required this.onTap,
     this.comment,
+    this.actions,
   });
 
   final String name;
   final String imageUrl;
   final VoidCallback onTap;
   final String? comment;
+  final Widget? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class RecipeCard extends StatelessWidget {
         children: [
           Expanded(
             child: SizedBox(
-              height: 200,
+              height: 300,
               width: double.maxFinite,
               child: Card.filled(
                 child: ClipRRect(
@@ -59,6 +61,7 @@ class RecipeCard extends StatelessWidget {
                     ),
               ),
             ),
+          if (actions != null) actions!,
         ],
       ),
     );

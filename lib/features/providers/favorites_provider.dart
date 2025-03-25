@@ -42,6 +42,29 @@ class FavoritesNotifier extends _$FavoritesNotifier {
     }
   }
 
+  Future<void> updateFavoriteComment(int mealId, String newComment) async {
+    try {
+      final token = ref.read(authProvider);
+      if (token == null) throw Exception("Not authenticated");
+
+      final response = await _dio.put(
+        "/Favorite/Updatefavorites/$mealId", // Voeg mealId toe aan de URL
+        data: {"comment": newComment}, // Alleen de comment als body
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+      );
+
+      if (response.statusCode == 200) {
+        print("Favorite updated successfully!");
+
+        // Update the list after editing
+        await ref.read(favoritesFetcherProvider.notifier).resetFavorites();
+      }
+    } catch (e) {
+      print("Error updating favorite: $e");
+      state = AsyncError(e, StackTrace.current);
+    }
+  }
+
   Future<void> removeFavorite(dynamic mealId) async {
     int id = int.tryParse(mealId.toString()) ?? 0;
     try {
